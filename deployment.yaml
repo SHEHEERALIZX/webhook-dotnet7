@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webhookdotnet-deployment
+  labels:
+    app: webhookdotnet
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webhookdotnet
+  template:
+    metadata:
+      labels:
+        app: webhookdotnet
+    spec:
+      containers:
+        - name: webhookdotnet
+          image: ghcr.io/sheheeralizx/webhook-dotnet7:nightly
+          ports:
+            - containerPort: 5000
