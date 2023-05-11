@@ -16,7 +16,7 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS runtime
 
 # Set working directory
-WORKDIR /app
+WORKDIR /root
 
 # Copy published files from build image
 COPY --from=build /app/out .
@@ -26,3 +26,5 @@ EXPOSE 80
 
 # Start the ASP.NET Core application
 ENTRYPOINT ["dotnet", "webhook_endpoint.dll"]
+
+
